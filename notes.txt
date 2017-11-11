@@ -1,0 +1,12 @@
+bunny (RabbitMQ) vs amqp
+Bunny is used for sequential processing. A message is popped off the queue, processed then acknowledged, before the next message is retrieved. To scale this, you should use either threads or processes to process more messages at once.
+
+The AMQP gem is Event-based and runs inside an EventMachine reactor. This is ideally suited to light workloads where RabbitMQ or another external service would be the bottleneck. Using AMQP gem, a consumer will consume as many messages as possible (or told to), and fire off individual callbacks for each message. If the callbacks make their own network calls, this is probably the best solution as it allows Ruby to interleave the network communication most effectively.
+
+Short summary, but basically for a rarely-running script I'd suggest the sequential nature of Bunny, especially if you've not worked in EventMachine before. It's hard to answer fully without knowledge of your workload
+
+test app
+get message from input
+display message from input
+snmp info
+output snmp oid info
