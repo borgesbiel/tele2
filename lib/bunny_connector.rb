@@ -1,3 +1,6 @@
+require 'bunny'
+require_relative 'configuration'
+
 class BunnyConnector
   class << self
     def new

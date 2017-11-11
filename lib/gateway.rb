@@ -1,33 +1,23 @@
-require 'bunny'
-require_relative 'configuration'
 require_relative 'bunny_connector'
+require_relative 'mediator'
 
-def send_message data
+class Gateway
   conn = BunnyConnector.new
   ch   = conn.create_channel
+  q    = ch.queue 'gateway_queue'
 
-  ex   = ch.fanout 'gateway_exchange'
-  ex.publish data
+  begin
+    puts ' [*] Gateway service ------'
+    puts ' [*] Waiting for messages...'
+    puts ' [*] To exit press CTRL+C'
+    puts
 
-  puts " [x] Mediated:  #{data}"
-  conn.close
-end
+    q.subscribe block: true do |_delivery_info, _properties, body|
+      Mediator.send_message "#{body}"
+    end
+  rescue Interrupt => _
+    conn.close
 
-conn = BunnyConnector.new
-ch   = conn.create_channel
-q    = ch.queue 'gateway_queue'
-
-begin
-  puts ' [*] Gateway service ------'
-  puts ' [*] Waiting for messages...'
-  puts ' [*] To exit press CTRL+C'
-  puts
-
-  q.subscribe block: true do |_delivery_info, _properties, body|
-    send_message "#{body}"
+    exit(0)
   end
-rescue Interrupt => _
-  conn.close
-
-  exit(0)
 end

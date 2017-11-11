@@ -1,5 +1,3 @@
-require 'bunny'
-require 'rubygems'
 require 'eventmachine'
 require_relative 'configuration'
 require_relative 'bunny_connector'
