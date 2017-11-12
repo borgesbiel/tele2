@@ -40,7 +40,7 @@ Run with Docker
   docker-compose up -d
   ```
 
-### Run microservices in docker
+## Run microservices in docker
 
 1. Run each microservice in a terminal.
 
