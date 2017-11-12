@@ -10,7 +10,7 @@ class Logger
   q.bind(x)
 
   begin
-    puts " [*] Logger ------"
+    puts " [*] Logger service ------"
     puts " [*] Waiting for messages."
     puts " [*] To exit press CTRL+C"
     puts
