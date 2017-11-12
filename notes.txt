@@ -19,6 +19,14 @@ The MIB is a hierarchical, pre-defined structure that stores information that ca
 To refer to a specific node of the tree, you must trace the path from the unnamed root of the tree to the node in question. The lineage of its parent IDs (numbers or strings) are strung together, starting with the most general, to form an address. Each junction in the hierarchy is represented by a dot in this notation, so that the address ends up being a series of ID strings or numbers separated by dots. This entire address is known as an object identifier, or OID.
 
 
+# docker
+docker build -t tele2 .
+docker run -d --rm -h rabbitmq --name tele2-rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3-management
+
+docker run --network=tele2_default --link tele2_rabbitmq_1:rabbitmq -t -i tele2 ruby keyboard_client.rb
+docker run --network=tele2_default --link tele2_rabbitmq_1:rabbitmq -t -i tele2 ruby gateway.rb
+docker run --network=tele2_default --link tele2_rabbitmq_1:rabbitmq -t -i tele2 ruby logger.rb
+
 test app eventmachine + RabbitMQ
 get input from client keyboard
 output the input
