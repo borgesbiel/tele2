@@ -55,3 +55,10 @@ Run with Docker
   ```bash
    docker run --network=tele2_default --link tele2_rabbitmq_1:rabbitmq -t -i tele2 ruby logger.rb
   ```
+
+2. Access the panel http://localhost:15672/#/
+
+  ```bash
+    username: guest
+    passowrd: guest
+  ```
