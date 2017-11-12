@@ -6,6 +6,7 @@ services:
       - "5672:5672"
       - "15672:15672"
   ruby:
+    build: .
     image: tele2
     links:
       - rabbitmq
