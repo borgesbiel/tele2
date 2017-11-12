@@ -20,5 +20,5 @@ Each microservice has a single responsibility to return the result to the messag
 
 Workflow Diagram
 -------------
-![Alt text](/images/workflow.jpg?raw=true "workflow")
+![picture](/images/workflow.png?raw=true "workflow")
 
