@@ -4,6 +4,7 @@ GEM
     amq-protocol (2.2.0)
     bunny (2.7.2)
       amq-protocol (>= 2.2.0)
+    byebug (9.1.0)
     eventmachine (1.2.5)
     snmp (1.2.0)
 
@@ -12,6 +13,7 @@ PLATFORMS
 
 DEPENDENCIES
   bunny
+  byebug
   eventmachine
   snmp
 
