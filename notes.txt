@@ -1,12 +1,28 @@
-bunny (RabbitMQ) vs amqp
+# bunny (RabbitMQ) vs amqp
 Bunny is used for sequential processing. A message is popped off the queue, processed then acknowledged, before the next message is retrieved. To scale this, you should use either threads or processes to process more messages at once.
-
 The AMQP gem is Event-based and runs inside an EventMachine reactor. This is ideally suited to light workloads where RabbitMQ or another external service would be the bottleneck. Using AMQP gem, a consumer will consume as many messages as possible (or told to), and fire off individual callbacks for each message. If the callbacks make their own network calls, this is probably the best solution as it allows Ruby to interleave the network communication most effectively.
-
 Short summary, but basically for a rarely-running script I'd suggest the sequential nature of Bunny, especially if you've not worked in EventMachine before. It's hard to answer fully without knowledge of your workload
 
-test app
-get message from input
-display message from input
-snmp info
-output snmp oid info
+
+# eventmachine
+EventMachine is an event-driven I/O and lightweight concurrency library for Ruby. It provides event-driven I/O using the Reactor pattern.
+EventMachine is designed to simultaneously meet two key needs:
+Extremely high scalability, performance and stability for the most demanding production environments.
+An API that eliminates the complexities of high-performance threaded network programming, allowing engineers to concentrate on their application logic.
+This unique combination makes EventMachine a premier choice for designers of critical networked applications, including Web servers and proxies, email and IM production systems, authentication/authorization processors, and many more.
+
+# snmp
+SNMP is a protocol that is implemented on the application layer of the networking stack (click here to learn about networking layers). The protocol was created as a way of gathering information from very different systems in a consistent manner.
+An SNMP manager is a computer that is configured to poll SNMP agent for information.
+SNMP agents do the bulk of the work. They are responsible for gathering information about the local system and storing them in a format that can be queried.updating a database called the "management information base", or MIB.
+The MIB is a hierarchical, pre-defined structure that stores information that can be queried or set. This is available to well-formed SNMP requests originating from a host that has authenticated with the correct credentials (an SNMP manager).
+To refer to a specific node of the tree, you must trace the path from the unnamed root of the tree to the node in question. The lineage of its parent IDs (numbers or strings) are strung together, starting with the most general, to form an address. Each junction in the hierarchy is represented by a dot in this notation, so that the address ends up being a series of ID strings or numbers separated by dots. This entire address is known as an object identifier, or OID.
+
+
+test app eventmachine + RabbitMQ
+get input from client keyboard
+output the input
+
+test app snmp
+get snmp info from connected system
+output snmp OID info
